@@ -1,13 +1,9 @@
-import React from "react";
-import { Grid } from "@mui/material";
+import Grid from "@mui/material/Grid";
 
-const Board = () => {
+const Board = ({ grids }: any) => {
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={1}></Grid>
-      <Grid item xs={1}></Grid>
-      <Grid item xs={1}></Grid>
-      <Grid item xs={1}></Grid>
+    <Grid container spacing={0} columns={100}>
+      {grids}
     </Grid>
   );
 };
