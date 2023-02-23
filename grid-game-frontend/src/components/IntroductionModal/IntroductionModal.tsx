@@ -1,52 +1,11 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
 import InfoIcon from "@mui/icons-material/Info";
-
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-  },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
-}));
-
-export interface DialogTitleProps {
-  children?: React.ReactNode;
-  onClose: () => void;
-}
-
-function BootstrapDialogTitle(props: DialogTitleProps) {
-  const { children, onClose, ...other } = props;
-
-  return (
-    <DialogTitle sx={{ m: 0, p: 2, textAlign: "center" }} {...other}>
-      {children}
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          onClick={onClose}
-          sx={{
-            position: "absolute",
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </DialogTitle>
-  );
-}
+import { StyledDialogTitle, StyledDialog } from "../StyledDialog/StyledDialog";
 
 const IntroductionModal = () => {
   const [open, setOpen] = React.useState(true);
@@ -61,34 +20,62 @@ const IntroductionModal = () => {
 
   return (
     <div>
-      <IconButton onClick={handleClickOpen}>
+      <IconButton onClick={handleClickOpen} color="info">
         <InfoIcon />
       </IconButton>
-      <BootstrapDialog onClose={handleClose} open={open}>
-        <BootstrapDialogTitle onClose={handleClose}>
-          Welcome to the Get To The Fucking Location Game!
-        </BootstrapDialogTitle>
+      <StyledDialog onClose={handleClose} open={open}>
+        <StyledDialogTitle onClose={handleClose}>
+          Welcome to the Get To The Location Game!
+        </StyledDialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
             You're a scout who was given a mission to retcon with another
-            squadron. Your goal is to make it there in one piece. However, there
-            are many obstacles in your way. You're a purple circle that's trying
-            to make it to the black circle.
+            squadron. You are trying to make it to the retcon location; however,
+            there are many obstacles in your way and you only have a limited
+            number of time ("moves") to get there.
+          </Typography>
+          <Typography gutterBottom>The Gist:</Typography>
+          <Typography gutterBottom>
+            You're a black cell that's trying to get to the bright magenta cell.
           </Typography>
           <Typography gutterBottom>
-            Red squares represent lava. You lose 50 health and 10 moves.
+            You start off with 200 health and 450 moves.
           </Typography>
           <Typography gutterBottom>
-            Brown squares represent mud. You lose 10 health and 5 moves.
+            Win condition: Get to the designated location without losing all of
+            your health or moves.
           </Typography>
           <Typography gutterBottom>
-            Blue squares are somewhat helpful. You lose 5 health and 0 moves.
+            Lose condition: You lose all of your health or moves.
           </Typography>
           <Typography gutterBottom>
-            White squares do not affect you much. You lose 0 health and 1 moves.
+            Specific cells that you traverse to can affect your health and
+            moves:
           </Typography>
           <Typography gutterBottom>
-            White squares do not affect you much. You lose 0 health and 1 moves.
+            Red cells represent lava. You lose 50 health and 10 moves.
+          </Typography>
+          <Typography gutterBottom>
+            Brown cells represent mud. You lose 10 health and 5 moves.
+          </Typography>
+          <Typography gutterBottom>
+            Blue cells are somewhat helpful. You lose 5 health and 0 moves.
+          </Typography>
+          <Typography gutterBottom>
+            White cells do not affect you much. You lose 0 health and 1 moves.
+          </Typography>
+          <Typography gutterBottom>Controls:</Typography>
+          <Typography gutterBottom>
+            Up arrow key allows you to move up.
+          </Typography>
+          <Typography gutterBottom>
+            Down arrow key allows you to move down.
+          </Typography>
+          <Typography gutterBottom>
+            Left arrow key allows you to move left.
+          </Typography>
+          <Typography gutterBottom>
+            Right arrow key allows you to move right.
           </Typography>
         </DialogContent>
         <DialogActions>
@@ -96,7 +83,7 @@ const IntroductionModal = () => {
             I got it.
           </Button>
         </DialogActions>
-      </BootstrapDialog>
+      </StyledDialog>
     </div>
   );
 };

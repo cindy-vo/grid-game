@@ -20,4 +20,15 @@ const DIRECTION_TICKS = {
     40: DIRECTIONS.BOTTOM,
   };
 
-export { DIRECTIONS, DIRECTION_TICKS, KEY_CODES_MAPPER, GRID_LENGTH }
+  const CELL_TYPES = ["blank", "speeder", "lava", "mud", "player", "finish"];
+
+const CELL_TYPES_MAPPING = {
+  blank: { health: 0, moves: 1, backgroundColor: "#fff" },
+  speeder: { health: 5, moves: 0, backgroundColor: "#42a5f5" },
+  lava: { health: 50, moves: 10, backgroundColor: "#ef5350" },
+  mud: { health: 10, moves: 5, backgroundColor: "#ff9800" },
+  player: { health: 0, moves: 0, backgroundColor: "#1B1B1B" },
+  finish: { health: 0, moves: 0, backgroundColor: "#FF00CC" },
+};
+
+export { DIRECTIONS, DIRECTION_TICKS, KEY_CODES_MAPPER, GRID_LENGTH, CELL_TYPES, CELL_TYPES_MAPPING }
